@@ -8,12 +8,15 @@ angular
 
         /* --- MODELS --- */
 
+        // $rootScope.apiUrl;
         // $rootScope.nascent;
         // $rootScope.user;
 
         /* --- FUNCTIONS --- */
 
         $rootScope.initialize = function () {
+
+            $rootScope.apiUrl = 'http://api.syba.club/';
 
             $rootScope.nascent = false;
 
@@ -117,7 +120,7 @@ angular
 
             $scope.newLecture.poster = $rootScope.user.id;
 
-            $http.post('http://localhost:1337/lecture', $scope.newLecture).then(function (response) {
+            $http.post($rootScope.apiUrl + 'lecture', $scope.newLecture).then(function (response) {
 
                 $scope.getLectures();
 
@@ -137,7 +140,7 @@ angular
 
             $rootScope.nascent = true;
 
-            $http.delete('http://localhost:1337/lecture/' + id).then(function (response) {
+            $http.delete($rootScope.apiUrl + 'lecture/' + id).then(function (response) {
 
                 $scope.getLectures();
 
@@ -157,7 +160,7 @@ angular
 
             $rootScope.nascent = true;
 
-            $http.get('http://localhost:1337/lecture?limit=5&populate=poster&sort=createdAt DESC').then(function (response) {
+            $http.get($rootScope.apiUrl + 'lecture?limit=5&populate=poster&sort=createdAt DESC').then(function (response) {
 
                 angular.forEach(response.data, function (lecture) {
 
@@ -185,7 +188,7 @@ angular
 
             $rootScope.nascent = true;
 
-            $http.get('http://localhost:1337/faculty?username=' + $scope.credentials.username + '&password=' + $scope.credentials.password).then(function (response) {
+            $http.get($rootScope.apiUrl + 'faculty?username=' + $scope.credentials.username + '&password=' + $scope.credentials.password).then(function (response) {
 
                 if (response.data.length === 1) {
 
