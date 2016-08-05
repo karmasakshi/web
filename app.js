@@ -164,7 +164,7 @@ angular
 
                 angular.forEach(response.data, function (lecture) {
 
-                    lecture.when = moment(lecture.when).format("h:MM A, dddd, Mo MMMM");
+                    lecture.when = moment(lecture.when).format("h:mm A, dddd, Mo MMMM");
 
                     lecture.createdAt = moment(lecture.createdAt).fromNow();
 
